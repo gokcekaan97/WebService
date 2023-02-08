@@ -9,11 +9,11 @@ import Foundation
 
 struct DataContainer: Codable {
   
-  private let offset:Int? // The requested offset (skipped results) of the call
-  private let limit:Int? // The requested result limit
-  private let total:Int? // The total number of results available
-  private let count:Int? // The total number of results returned by this call
-  private let results:[Character]? // The list of entities returned by the call
+  let offset:Int? // The requested offset (skipped results) of the call
+  let limit:Int? // The requested result limit
+  let total:Int? // The total number of results available
+  let count:Int? // The total number of results returned by this call
+  let results:[Character]? // The list of entities returned by the call
   
   enum CodingKeys: CodingKey {
     case offset

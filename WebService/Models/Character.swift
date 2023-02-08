@@ -9,14 +9,14 @@ import Foundation
 
 struct Character: Codable {
   
-  private let id:Int? // (int, optional): The unique ID of the character resource.,
-  private let name:String? // (string, optional): The name of the character.,
-  private let description:String? // (string, optional): A short bio or description of the character.,
-  private var thumbnail:Image? // (Image, optional): The representative image for this character.,
-  private let comics: ComicList?
-  private let series: SeriesList?
-  private let stories: StoryList?
-  private let events: EventList?
+  let id:Int? // (int, optional): The unique ID of the character resource.,
+  let name:String? // (string, optional): The name of the character.,
+  let description:String? // (string, optional): A short bio or description of the character.,
+  var thumbnail:Image? // (Image, optional): The representative image for this character.,
+  let comics: ComicList?
+  let series: SeriesList?
+  let stories: StoryList?
+  let events: EventList?
   
   enum CodingKeys: CodingKey {
     case id

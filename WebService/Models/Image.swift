@@ -9,8 +9,8 @@ import Foundation
 
 struct Image: Codable {
   
-  private let path:String? // (string, optional): The directory path of to the image.,
-  private let pathExtension:String? // (string, optional): The file extension for the image.
+  let path:String? // (string, optional): The directory path of to the image.,
+  let pathExtension:String? // (string, optional): The file extension for the image.
   
   enum CodingKeys: CodingKey {
     case path
