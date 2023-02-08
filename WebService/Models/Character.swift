@@ -7,25 +7,48 @@
 
 import Foundation
 
-struct Character: Decodable {
+struct Character: Codable {
   
   private let id:Int? // (int, optional): The unique ID of the character resource.,
   private let name:String? // (string, optional): The name of the character.,
   private let description:String? // (string, optional): A short bio or description of the character.,
   private var thumbnail:Image? // (Image, optional): The representative image for this character.,
+  private let comics: ComicList?
+  private let series: SeriesList?
+  private let stories: StoryList?
+  private let events: EventList?
   
   enum CodingKeys: CodingKey {
     case id
     case name
     case description
     case thumbnail
+    case comics
+    case series
+    case stories
+    case events
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Int.self, forKey: .id)
-    self.name = try container.decode(String.self, forKey: .name)
-    self.description = try container.decode(String.self, forKey: .description)
-    self.thumbnail = try container.decode(Image.self, forKey: .thumbnail)
+    self.id = try container.decodeIfPresent(Int.self, forKey: .id)
+    self.name = try container.decodeIfPresent(String.self, forKey: .name)
+    self.description = try container.decodeIfPresent(String.self, forKey: .description)
+    self.thumbnail = try container.decodeIfPresent(Image.self, forKey: .thumbnail)
+    self.comics = try container.decodeIfPresent(ComicList.self, forKey: .comics)
+    self.series = try container.decodeIfPresent(SeriesList.self, forKey: .series)
+    self.stories = try container.decodeIfPresent(StoryList.self, forKey: .stories)
+    self.events = try container.decodeIfPresent(EventList.self, forKey: .events)
+  }
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.thumbnail, forKey: .thumbnail)
+    try container.encodeIfPresent(self.comics, forKey: .comics)
+    try container.encodeIfPresent(self.series, forKey: .series)
+    try container.encodeIfPresent(self.stories, forKey: .stories)
+    try container.encodeIfPresent(self.events, forKey: .events)
   }
 }

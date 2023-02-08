@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct DataContainer: Decodable {
+struct DataContainer: Codable {
+  
   private let offset:Int? // The requested offset (skipped results) of the call
   private let limit:Int? // The requested result limit
   private let total:Int? // The total number of results available
@@ -24,10 +25,18 @@ struct DataContainer: Decodable {
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.offset = try container.decode(Int.self, forKey: .offset)
-    self.limit = try container.decode(Int.self, forKey: .limit)
-    self.total = try container.decode(Int.self, forKey: .total)
-    self.count = try container.decode(Int.self, forKey: .count)
-    self.results = try container.decode([Character].self, forKey: .results)
+    self.offset = try container.decodeIfPresent(Int.self, forKey: .offset)
+    self.limit = try container.decodeIfPresent(Int.self, forKey: .limit)
+    self.total = try container.decodeIfPresent(Int.self, forKey: .total)
+    self.count = try container.decodeIfPresent(Int.self, forKey: .count)
+    self.results = try container.decodeIfPresent([Character].self, forKey: .results)
+  }
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.offset, forKey: .offset)
+    try container.encodeIfPresent(self.limit, forKey: .limit)
+    try container.encodeIfPresent(self.total, forKey: .total)
+    try container.encodeIfPresent(self.count, forKey: .count)
+    try container.encodeIfPresent(self.results, forKey: .results)
   }
 }
