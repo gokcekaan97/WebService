@@ -15,6 +15,7 @@ class CharacterDetailViewController: UIViewController {
   @IBOutlet weak var characterNameLabel: UILabel!
   var characterReferance: Character?
   weak var characterDelegate: CharacterDetail?
+  var imageReferance: Image?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +40,7 @@ class CharacterDetailViewController: UIViewController {
           characterComicListLabel.text = "No Comic List"
         }
       }
-      if let characterImageDetail = character.thumbnail?.url{
+      if let characterImageDetail = character.thumbnail?.landscapeIncredibleURL{
         downloadImage(from: characterImageDetail)
       } 
     } else {
@@ -49,14 +50,14 @@ class CharacterDetailViewController: UIViewController {
   
   func downloadImage(from url: URL) {
       getData(from: url) { data, response, error in
-          guard let data = data, error == nil else { return }
-          DispatchQueue.main.async { [weak self] in
-            if UIImage(data: data) != nil{
-                self?.characterThumbnail.image = UIImage(data: data)
-            } else {
-              self?.characterThumbnail.image = UIImage(named: "notFound")
-            }
+        guard let data = data, error == nil else { return }
+        DispatchQueue.main.async { [weak self] in
+          if UIImage(data: data) != nil{
+              self?.characterThumbnail.image = UIImage(data: data)
+          } else {
+            self?.characterThumbnail.image = UIImage(named: "notFound")
           }
+        }
       }
   }
   

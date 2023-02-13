@@ -6,17 +6,23 @@
 //
 
 import Foundation
+import UIKit
 
 struct Image: Codable {
   
   
   let path:String? // (string, optional): The directory path of to the image.,
   let pathExtension:String? // (string, optional): The file extension for the image.
-  var url: URL? {
+  var standardMediumURL: URL? {
     if let path = path{
-      var tempString: String = path
-      tempString.insert("s", at: tempString.index(tempString.startIndex, offsetBy: 4))
-      return URL(string: "\(tempString)/portrait_uncanny.jpg")
+      return URL(string: "\(path)/standard_medium.jpg")
+    } else {
+      return nil
+    }
+  }
+  var landscapeIncredibleURL: URL? {
+    if let path = path{
+      return URL(string: "\(path)/landscape_incredible.jpg")
     } else {
       return nil
     }
@@ -36,5 +42,5 @@ struct Image: Codable {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.path, forKey: .path)
     try container.encodeIfPresent(self.pathExtension, forKey: .pathExtension)
-  }
+  }  
 }
