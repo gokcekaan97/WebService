@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Character View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WebService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterViewController" id="BYZ-38-t0r" customClass="CharacterViewController" customModule="WebService" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,13 +30,23 @@
                             <constraint firstAttribute="bottom" secondItem="qrp-0B-A6i" secondAttribute="bottom" id="tCR-xH-dqI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fOh-qf-Ql1"/>
                     <connections>
-                        <outlet property="characterTable" destination="qrp-0B-A6i" id="FSn-N1-sbX"/>
+                        <outlet property="characterTable" destination="qrp-0B-A6i" id="Cmk-hj-z3K"/>
+                        <segue destination="1MU-Ws-0gF" kind="show" identifier="showCharacterDetailViewController" id="9aj-be-bab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152" y="40"/>
+            <point key="canvasLocation" x="3014.5038167938928" y="-48.591549295774648"/>
+        </scene>
+        <!--CharacterDetailViewController-->
+        <scene sceneID="jaQ-bq-GaO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CharacterDetailViewControllerXib" referencedIdentifier="CharacterDetailViewController" id="1MU-Ws-0gF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AbI-IY-o6G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3692" y="-49"/>
         </scene>
     </scenes>
     <resources>

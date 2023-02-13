@@ -8,17 +8,17 @@
 import Foundation
 struct ComicList: Codable {
     
-    let available: Int?
-    let returned: Int?
-    let collectionURI: String?
-    let items: [Comics]?
+  let available: Int?
+  let returned: Int?
+  let collectionURI: String?
+  let items: [Comics]?
     
-    enum CodingKeys: String, CodingKey {
-        case available
-        case returned
-        case collectionURI
-        case items
-    }
+  enum CodingKeys: String, CodingKey {
+    case available
+    case returned
+    case collectionURI
+    case items
+  }
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.available = try container.decodeIfPresent(Int.self, forKey: .available)

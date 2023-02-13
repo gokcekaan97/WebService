@@ -9,25 +9,23 @@ import Foundation
 import CryptoKit
 
 class Service {
-  private let limit = 20
+  private let limit = 30
   
-  func downloadCharacters(_ name: String,page: Int,characterEndpoint: CharacterEndpoint, completion: @escaping (Result<RequestBody,NSError>) -> Void) {
-    
-    
+  func downloadCharacters(page: Int,characterEndpoint: CharacterEndpoint, completion: @escaping (Result<RequestBody,NSError>) -> Void) {
     
     let timestamp = "1"
     let hash = "\(timestamp)\(characterEndpoint.privateKey)\(characterEndpoint.apiKey)".MD5
     let commonQueryItems = [
-      URLQueryItem(name: "offset", value: "\(page*limit)"),
+      URLQueryItem(name: "offset", value: "\(page * limit)"),
       URLQueryItem(name: "limit", value: "\(limit)"),
       URLQueryItem(name: "ts", value: timestamp),
       URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
       URLQueryItem(name: "hash", value: hash)
     ]
-    
     let tempURLString = URL(string: characterEndpoint.baseURL + "/" + characterEndpoint.path)
     var components = URLComponents(url: tempURLString!, resolvingAgainstBaseURL: true)
     components?.queryItems = commonQueryItems
+    
     guard let url = components?.url else {
       return completion(.failure(NSError(domain: "", code: 000, userInfo: ["message": "Can't build url"])))
     }
@@ -39,14 +37,14 @@ class Service {
         return completion(.failure(NSError(domain: "", code: 000, userInfo: ["message": "Can't parse json"])))
       }
       completion(.success(requestBody))
-      
       return
     }.resume()
   }
 }
 
 extension String {
-var MD5: String {
+  
+  var MD5: String {
         let computed = Insecure.MD5.hash(data: self.data(using: .utf8)!)
         return computed.map { String(format: "%02hhx", $0) }.joined()
     }

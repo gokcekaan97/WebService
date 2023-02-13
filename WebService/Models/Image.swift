@@ -9,8 +9,18 @@ import Foundation
 
 struct Image: Codable {
   
+  
   let path:String? // (string, optional): The directory path of to the image.,
   let pathExtension:String? // (string, optional): The file extension for the image.
+  var url: URL? {
+    if let path = path{
+      var tempString: String = path
+      tempString.insert("s", at: tempString.index(tempString.startIndex, offsetBy: 4))
+      return URL(string: "\(tempString)/portrait_uncanny.jpg")
+    } else {
+      return nil
+    }
+  }
   
   enum CodingKeys: CodingKey {
     case path
