@@ -14,11 +14,12 @@ class CharacterDetailViewController: UIViewController {
   @IBOutlet weak var characterDescriptionLabel: UILabel!
   @IBOutlet weak var characterNameLabel: UILabel!
   var characterReferance: Character?
-
+  weak var characterDelegate: CharacterDetail?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.characterReferance = characterDelegate?.setCharacterDetail()
     if let character = characterReferance {
       characterNameLabel.text = character.name
       if character.description != "" {
@@ -45,6 +46,7 @@ class CharacterDetailViewController: UIViewController {
       print("Can't get character")
     }
   }
+  
   func downloadImage(from url: URL) {
       getData(from: url) { data, response, error in
           guard let data = data, error == nil else { return }
@@ -57,8 +59,10 @@ class CharacterDetailViewController: UIViewController {
           }
       }
   }
+  
   func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
       URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
   }
+  
 }
 

@@ -33,6 +33,9 @@
 		27153BB62996323C00A57E7F /* LoadingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27153BB42996323C00A57E7F /* LoadingViewCell.xib */; };
 		27153BBB29967C2800A57E7F /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27153BB929967C2800A57E7F /* CharacterDetailViewController.swift */; };
 		27153BC12996897000A57E7F /* CharacterDetailViewControllerXib.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */; };
+		278CD4BE299A68570081B5E6 /* CharacterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278CD4BD299A68570081B5E6 /* CharacterProtocol.swift */; };
+		278CD4C1299A6EA20081B5E6 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278CD4BF299A6EA20081B5E6 /* Characters.swift */; };
+		278CD4C2299A6EA20081B5E6 /* Characters.xib in Resources */ = {isa = PBXBuildFile; fileRef = 278CD4C0299A6EA20081B5E6 /* Characters.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		27153BB42996323C00A57E7F /* LoadingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewCell.xib; sourceTree = "<group>"; };
 		27153BB929967C2800A57E7F /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterDetailViewControllerXib.storyboard; sourceTree = "<group>"; };
+		278CD4BD299A68570081B5E6 /* CharacterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProtocol.swift; sourceTree = "<group>"; };
+		278CD4BF299A6EA20081B5E6 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
+		278CD4C0299A6EA20081B5E6 /* Characters.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Characters.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +102,14 @@
 		27153B742993916700A57E7F /* WebService */ = {
 			isa = PBXGroup;
 			children = (
+				278CD4BC299A68480081B5E6 /* Protocol */,
 				27153BB829967C0800A57E7F /* CharacterDetail */,
 				27153BB729967BE100A57E7F /* Character */,
 				27153BB229962F7400A57E7F /* Animation */,
 				27153B8F29939EC300A57E7F /* Models */,
 				27153B8C2993980400A57E7F /* Service */,
 				27153B752993916700A57E7F /* AppDelegate.swift */,
+				27153B7B2993916700A57E7F /* Main.storyboard */,
 				27153B772993916700A57E7F /* SceneDelegate.swift */,
 				27153B812993916700A57E7F /* Assets.xcassets */,
 				27153B832993916700A57E7F /* LaunchScreen.storyboard */,
@@ -153,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				27153B792993916700A57E7F /* CharacterViewController.swift */,
-				27153B7B2993916700A57E7F /* Main.storyboard */,
+				278CD4BF299A6EA20081B5E6 /* Characters.swift */,
+				278CD4C0299A6EA20081B5E6 /* Characters.xib */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -165,6 +174,14 @@
 				27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */,
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		278CD4BC299A68480081B5E6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				278CD4BD299A68570081B5E6 /* CharacterProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +244,7 @@
 			files = (
 				27153B852993916700A57E7F /* LaunchScreen.storyboard in Resources */,
 				27153BB62996323C00A57E7F /* LoadingViewCell.xib in Resources */,
+				278CD4C2299A6EA20081B5E6 /* Characters.xib in Resources */,
 				27153B822993916700A57E7F /* Assets.xcassets in Resources */,
 				27153B7D2993916700A57E7F /* Main.storyboard in Resources */,
 				27153BC12996897000A57E7F /* CharacterDetailViewControllerXib.storyboard in Resources */,
@@ -240,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278CD4C1299A6EA20081B5E6 /* Characters.swift in Sources */,
 				27153BA12993D4F700A57E7F /* ComicSummary.swift in Sources */,
 				27153B9329939F2700A57E7F /* DataModel.swift in Sources */,
 				27153BA72993D5FD00A57E7F /* SeriesList.swift in Sources */,
@@ -257,6 +276,7 @@
 				27153B782993916700A57E7F /* SceneDelegate.swift in Sources */,
 				27153B992993A6F500A57E7F /* Character.swift in Sources */,
 				27153B9B2993A79F00A57E7F /* Image.swift in Sources */,
+				278CD4BE299A68570081B5E6 /* CharacterProtocol.swift in Sources */,
 				27153BB52996323C00A57E7F /* LoadingViewCell.swift in Sources */,
 				27153BBB29967C2800A57E7F /* CharacterDetailViewController.swift in Sources */,
 				27153B9D2993B43800A57E7F /* CharacterEndpoint.swift in Sources */,

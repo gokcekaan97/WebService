@@ -29,14 +29,18 @@ class CharacterViewController: UIViewController {
     Task{
       await addMoreContent()
     }
+    
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showCharacterDetailViewController" {
-      guard let characterDetailViewController = segue.destination as? CharacterDetailViewController else { fatalError("vc not found") }
-      characterDetailViewController.characterReferance = self.characterReferance
+  func showDetails() {
+    guard let characterDetailViewController = characterDetailStoryboard.instantiateViewController(identifier: "CharacterDetailViewController") as? CharacterDetailViewController else {
+      fatalError("vc not found")
     }
+    characterDetailViewController.characterDelegate = self
+    navigationController?.pushViewController(characterDetailViewController, animated: true)
   }
+  
+
   
   func addMoreContent() async {
     Service().downloadCharacters(page: pageCounter,characterEndpoint: CharacterEndpoint()) { (characters) in
@@ -51,6 +55,7 @@ class CharacterViewController: UIViewController {
               self.pageCounter += 1
               self.characterTable.reloadData()
               self.isLoading = false
+              
             }
           }
         case .failure(_):
@@ -62,7 +67,11 @@ class CharacterViewController: UIViewController {
 
 
 
-extension CharacterViewController: UITableViewDelegate, UITableViewDataSource {
+extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, CharacterDetail {
+  
+  func setCharacterDetail() -> Character? {
+    return characterReferance
+  }
   
   func numberOfSections(in tableView: UITableView) -> Int {
     return 2
@@ -96,7 +105,7 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.characterReferance = requestArray[indexPath.row]
-    performSegue(withIdentifier: "showCharacterDetailViewController", sender: self)
+    showDetails()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
