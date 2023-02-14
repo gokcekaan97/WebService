@@ -24,11 +24,8 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1W3-Uo-CXv">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="BIM-ew-eXv"/>
-                                                </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-Xn-APb">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-Xn-APb">
                                                 <rect key="frame" x="0.0" y="128" width="393" height="207"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7Ng-Mx-iI7" userLabel="characterName">
@@ -41,7 +38,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfj-QT-CWh">
-                                                                <rect key="frame" x="20" y="40.666666666666657" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666671" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -63,7 +60,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfq-Ir-GDD">
-                                                                <rect key="frame" x="20" y="40.666666666666686" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666657" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -84,7 +81,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tH-ZD-Ft2">
-                                                                <rect key="frame" x="20" y="40.666666666666686" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666657" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -110,6 +107,7 @@
                                             <constraint firstItem="1W3-Uo-CXv" firstAttribute="top" secondItem="BvF-Sl-OwZ" secondAttribute="top" id="EFB-UO-Hrm"/>
                                             <constraint firstItem="CzL-Xn-APb" firstAttribute="top" secondItem="1W3-Uo-CXv" secondAttribute="bottom" id="PbA-ro-eBS"/>
                                             <constraint firstItem="1W3-Uo-CXv" firstAttribute="centerX" secondItem="BvF-Sl-OwZ" secondAttribute="centerX" id="Rnb-Gc-3hR"/>
+                                            <constraint firstItem="1W3-Uo-CXv" firstAttribute="top" secondItem="BvF-Sl-OwZ" secondAttribute="top" id="caY-0n-3f6"/>
                                             <constraint firstAttribute="height" constant="1200" id="cbe-iB-2q6"/>
                                             <constraint firstAttribute="trailing" secondItem="1W3-Uo-CXv" secondAttribute="trailing" id="fwt-Jn-gVw"/>
                                             <constraint firstAttribute="trailing" secondItem="CzL-Xn-APb" secondAttribute="trailing" id="fx8-ii-IRt"/>
