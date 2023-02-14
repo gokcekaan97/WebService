@@ -28,6 +28,8 @@ class CharacterViewController: UIViewController {
     characterTable.delegate = self
     characterTable.dataSource = self
     
+    registerViewControllerItems()
+    
     setActivityIndicator()
     
     setSearchBarController()
