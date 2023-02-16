@@ -27,6 +27,13 @@ struct Image: Codable {
       return nil
     }
   }
+  var Url: URL? {
+    if let path = path{
+      return URL(string: "\(path).jpg")
+    } else {
+      return nil
+    }
+  }
   
   enum CodingKeys: CodingKey {
     case path

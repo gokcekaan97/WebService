@@ -1,19 +1,19 @@
 //
-//  DataModel.swift
+//  ComicDataContainer.swift
 //  WebService
 //
-//  Created by kaan gokcek on 8.02.2023.
+//  Created by kaan gokcek on 16.02.2023.
 //
 
 import Foundation
 
-struct DataContainer: Codable {
+struct ComicDataContainer: Codable {
   
   let offset:Int? // The requested offset (skipped results) of the call
   let limit:Int? // The requested result limit
   let total:Int? // The total number of results available
   let count:Int? // The total number of results returned by this call
-  let results:[Character]? // The list of entities returned by the call
+  let results:[Comic]? // The list of entities returned by the call
   
   enum CodingKeys: CodingKey {
     case offset
@@ -29,7 +29,7 @@ struct DataContainer: Codable {
     self.limit = try container.decodeIfPresent(Int.self, forKey: .limit)
     self.total = try container.decodeIfPresent(Int.self, forKey: .total)
     self.count = try container.decodeIfPresent(Int.self, forKey: .count)
-    self.results = try container.decodeIfPresent([Character].self, forKey: .results)
+    self.results = try container.decodeIfPresent([Comic].self, forKey: .results)
   }
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)

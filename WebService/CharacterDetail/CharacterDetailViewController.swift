@@ -15,16 +15,17 @@ class CharacterDetailViewController: UIViewController {
   @IBOutlet weak var characterNameLabel: UILabel!
   var characterReferance: Character?
   weak var characterDelegate: CharacterDetail?
-  var imageReferance: Image?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    characterNameLabel.textColor = UIColor.white
-//    characterNameLabel.layer.borderColor = UIColor.white.cgColor
-//    characterNameLabel.layer.backgroundColor = UIColor.gray.cgColor
-//    characterNameLabel.layer.borderWidth = 2
-//    characterNameLabel.layer.cornerRadius = 5
+    
     self.characterReferance = characterDelegate?.setCharacterDetail()
+    
+    setCharacterView()
+    
+  }
+  
+  func setCharacterView(){
     if let character = characterReferance {
       characterNameLabel.text = character.name
       title = character.name
@@ -46,9 +47,8 @@ class CharacterDetailViewController: UIViewController {
         }
       }
       if let characterImageDetail = character.thumbnail?.landscapeIncredibleURL{
-        print(characterImageDetail)
         downloadImage(from: characterImageDetail)
-      } 
+      }
     } else {
       print("Can't get character")
     }

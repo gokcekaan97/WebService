@@ -23,10 +23,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1200"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1W3-Uo-CXv">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="295"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="295" id="2mq-RP-YOr"/>
+                                                </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-Xn-APb">
-                                                <rect key="frame" x="0.0" y="128" width="393" height="207"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-Xn-APb">
+                                                <rect key="frame" x="0.0" y="295" width="393" height="207"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="7Ng-Mx-iI7" userLabel="characterName">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="61"/>
@@ -38,7 +41,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfj-QT-CWh">
-                                                                <rect key="frame" x="20" y="40.666666666666671" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666686" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -60,7 +63,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfq-Ir-GDD">
-                                                                <rect key="frame" x="20" y="40.666666666666657" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666686" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -81,7 +84,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tH-ZD-Ft2">
-                                                                <rect key="frame" x="20" y="40.666666666666657" width="373" height="20.333333333333329"/>
+                                                                <rect key="frame" x="20" y="40.666666666666629" width="373" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -112,6 +115,7 @@
                                             <constraint firstAttribute="trailing" secondItem="1W3-Uo-CXv" secondAttribute="trailing" id="fwt-Jn-gVw"/>
                                             <constraint firstAttribute="trailing" secondItem="CzL-Xn-APb" secondAttribute="trailing" id="fx8-ii-IRt"/>
                                             <constraint firstItem="1W3-Uo-CXv" firstAttribute="leading" secondItem="BvF-Sl-OwZ" secondAttribute="leading" id="ncf-t5-zgv"/>
+                                            <constraint firstItem="CzL-Xn-APb" firstAttribute="top" secondItem="1W3-Uo-CXv" secondAttribute="bottom" id="pMr-Yp-PgF"/>
                                             <constraint firstItem="CzL-Xn-APb" firstAttribute="leading" secondItem="BvF-Sl-OwZ" secondAttribute="leading" id="w8b-M4-OEZ"/>
                                         </constraints>
                                     </view>

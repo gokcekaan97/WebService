@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct RequestBody: Codable  {
+struct CharacterDataWrapper: Codable  {
   let code: Int?
   let status: String?
   let copyright: String?
   let attributionText: String?
   let attributionHTML: String?
   let etag: String?
-  let data: DataContainer?
+  let data: CharacterDataContainer?
   
   enum CodingKeys: String, CodingKey {
     case code
@@ -33,7 +33,7 @@ struct RequestBody: Codable  {
     self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
     self.attributionText = try container.decodeIfPresent(String.self, forKey: .attributionText)
     self.attributionHTML = try container.decodeIfPresent(String.self, forKey: .attributionHTML)
-    self.data = try container.decodeIfPresent(DataContainer.self, forKey: .data)
+    self.data = try container.decodeIfPresent(CharacterDataContainer.self, forKey: .data)
     self.etag = try container.decodeIfPresent(String.self, forKey: .etag)
   }
   func encode(to encoder: Encoder) throws {

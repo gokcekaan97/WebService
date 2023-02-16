@@ -1,31 +1,31 @@
 //
-//  ViewController.swift
+//  ComicsViewController.swift
 //  WebService
 //
-//  Created by kaan gokcek on 8.02.2023.
+//  Created by kaan gokcek on 16.02.2023.
 //
 
 import UIKit
 
-class CharacterViewController: UIViewController {
-  
+class ComicsViewController: UIViewController {
+
   var isLoading = false
   var pageCounter = 0
+  let searchController = UISearchController(searchResultsController: nil)
   let reloadIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
   let customView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-  var requestArray = [Character?]()
-  var characterReferance: Character?
-  var characterDetailStoryboard = UIStoryboard(name: "CharacterDetailViewControllerXib", bundle: nil)
-  let characters = UINib(nibName: "Characters", bundle: nil)
-  let searchController = UISearchController(searchResultsController: nil)
-  let characterLoadingCellNib = UINib(nibName: "LoadingViewCell", bundle: nil)
-  @IBOutlet weak var characterTable: UITableView!
-
+  var requestArray = [Comic?]()
+  var comicReferance: Comic?
+  let comicTableViewCell = UINib(nibName: "ComicTableViewCell", bundle: nil)
+  let loadingCellNib = UINib(nibName: "LoadingViewCell", bundle: nil)
+  var comicDetailStoryboard = UIStoryboard(name: "ComicDetailStoryboard", bundle: nil)
+  @IBOutlet weak var comicTable: UITableView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    characterTable.delegate = self
-    characterTable.dataSource = self
+    comicTable.delegate = self
+    comicTable.dataSource = self
     
     registerViewControllerItems()
     
@@ -36,26 +36,24 @@ class CharacterViewController: UIViewController {
     addMoreContent("")
     
   }
-  
+
 }
 
-
-
-extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, CharacterDetail, UISearchBarDelegate {
+extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ComicDetail {
   
   func addMoreContent(_ name: String?)  {
     reloadIndicator.startAnimating()
-    CharacterService().downloadCharacters(name,page: pageCounter,characterEndpoint: CharacterEndpoint()) { (characters) in
-      switch characters {
-        case .success(let characters):
+    ComicService().downloadComics(name,page: pageCounter,characterEndpoint: ComicEndpoint()) { (comics) in
+      switch comics {
+        case .success(let comics):
           if !self.isLoading {
             self.isLoading = true
-            if let charactersArray = characters.data?.results{
-              self.requestArray.append(contentsOf: charactersArray)
+            if let comicsArray = comics.data?.results{
+              self.requestArray.append(contentsOf: comicsArray)
             }
             DispatchQueue.main.async {
               self.pageCounter += 1
-              self.characterTable.reloadData()
+              self.comicTable.reloadData()
               self.isLoading = false
               self.reloadIndicator.stopAnimating()
               self.reloadIndicator.hidesWhenStopped = true
@@ -68,16 +66,16 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
   }
   
   func showDetails() {
-    guard let characterDetailViewController = characterDetailStoryboard.instantiateViewController(identifier: "CharacterDetailViewController") as? CharacterDetailViewController else {
+    guard let comicDetailViewController = comicDetailStoryboard.instantiateViewController(identifier: "ComicDetailViewController") as? ComicDetailViewController else {
       fatalError("vc not found")
     }
-    characterDetailViewController.characterDelegate = self
-    navigationController?.pushViewController(characterDetailViewController, animated: true)
+    comicDetailViewController.comicDelegate = self
+    navigationController?.pushViewController(comicDetailViewController, animated: true)
   }
   
   func registerViewControllerItems(){
-    self.characterTable.register(characters.self, forCellReuseIdentifier: "Characters")
-    self.characterTable.register(characterLoadingCellNib.self, forCellReuseIdentifier: "loadingCellId")
+    self.comicTable.register(comicTableViewCell.self, forCellReuseIdentifier: "comicTableViewCell")
+    self.comicTable.register(loadingCellNib.self, forCellReuseIdentifier: "loadingCellId")
   }
   
   func setSearchBarController(){
@@ -91,13 +89,13 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
     reloadIndicator.style = UIActivityIndicatorView.Style.medium
     customView.addSubview(reloadIndicator)
     customView.center = self.view.center
-    self.characterTable.tableFooterView = customView
+    self.comicTable.tableFooterView = customView
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     requestArray.removeAll()
     pageCounter = 0
-    characterTable.reloadData()
+    comicTable.reloadData()
     addMoreContent("")
   }
   
@@ -105,7 +103,7 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
     if let searchText = searchBar.text, searchBar.text != ""{
       requestArray.removeAll()
       pageCounter = 0
-      characterTable.reloadData()
+      comicTable.reloadData()
       addMoreContent(searchText)
     }
   }
@@ -114,20 +112,19 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
     
   }
   
-  func setCharacterDetail() -> Character? {
-    return characterReferance
+  func setComicDetail() -> Comic? {
+    return comicReferance
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
 
   }
-  
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
     if indexPath.row == requestArray.count - 1, !isLoading, searchController.searchBar.text == ""{
       addMoreContent("")
-      
+
     }
   }
   
@@ -136,12 +133,12 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.characterReferance = requestArray[indexPath.row]
+//    self.characterReferance = requestArray[indexPath.row]
     showDetails()
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return "Marvel Characters"
+    return "Marvel Comics"
   }
   
   func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -152,12 +149,11 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = characterTable.dequeueReusableCell(withIdentifier: "Characters", for: indexPath) as! Characters
-    cell.characterName.text = requestArray[indexPath.row]?.name
-    if let characterImage = requestArray[indexPath.row]?.thumbnail?.standardMediumURL{
+    let cell = comicTable.dequeueReusableCell(withIdentifier: "comicTableViewCell", for: indexPath) as! ComicTableViewCell
+    cell.comicLabel.text = requestArray[indexPath.row]?.title
+    if let characterImage = requestArray[indexPath.row]?.thumbnail?.Url{
       cell.downloadImage(from: characterImage)
     }
     return cell
   }
-  
 }

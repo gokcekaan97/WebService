@@ -11,7 +11,7 @@ struct ComicList: Codable {
   let available: Int?
   let returned: Int?
   let collectionURI: String?
-  let items: [Comics]?
+  let items: [ComicSummary]?
     
   enum CodingKeys: String, CodingKey {
     case available
@@ -24,7 +24,7 @@ struct ComicList: Codable {
     self.available = try container.decodeIfPresent(Int.self, forKey: .available)
     self.returned = try container.decodeIfPresent(Int.self, forKey: .returned)
     self.collectionURI = try container.decodeIfPresent(String.self, forKey: .collectionURI)
-    self.items = try container.decodeIfPresent([Comics].self, forKey: .items)
+    self.items = try container.decodeIfPresent([ComicSummary].self, forKey: .items)
   }
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
