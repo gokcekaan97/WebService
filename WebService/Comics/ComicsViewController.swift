@@ -29,8 +29,7 @@ class ComicsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    comicTable.delegate = self
-    comicTable.dataSource = self
+    setDataSourceAndDelegate()
     
     registerViewControllerItems()
     
@@ -47,6 +46,11 @@ class ComicsViewController: UIViewController {
 }
 
 extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ComicDetail, UIPickerViewDelegate, UIPickerViewDataSource {
+  
+  func setDataSourceAndDelegate(){
+    comicTable.delegate = self
+    comicTable.dataSource = self
+  }
   
   func addMoreContent(_ name: String?)  {
     reloadIndicator.startAnimating()
@@ -129,8 +133,6 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISe
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     selectedFilter = row
-    print(row)
-    print(filterPickerServiceName[selectedFilter])
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -146,8 +148,6 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISe
     } else {
       pickerView.isHidden = true
       if let searchText = searchBar.text {
-        print(searchText)
-        print(selectedFilter)
         requestArray.removeAll()
         pageCounter = 0
         comicTable.reloadData()
@@ -175,11 +175,7 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISe
   }
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if indexPath.row == requestArray.count - 1, !isLoading, searchController.searchBar.text == ""{
-      if let searchText = searchController.searchBar.text {
-        addMoreContent(searchText)
-      } else if searchController.searchBar.text == "" {
-        addMoreContent("")
-      }
+      addMoreContent("")
     }
   }
   

@@ -15,10 +15,9 @@ class ComicService {
     let timestamp = "1"
     let hash = "\(timestamp)\(characterEndpoint.privateKey)\(characterEndpoint.apiKey)".MD5
     var customQueryItems = [URLQueryItem]()
-    var commonQueryItems = [
+    let commonQueryItems = [
       URLQueryItem(name: "offset", value: "\(page * limit)"),
       URLQueryItem(name: "limit", value: "\(limit)"),
-      URLQueryItem(name: "orderBy", value: "title"),
       URLQueryItem(name: "ts", value: timestamp),
       URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
       URLQueryItem(name: "hash", value: hash)
@@ -27,10 +26,9 @@ class ComicService {
     if name != "" {
         customQueryItems.append(URLQueryItem(name: "titleStartsWith", value: name))
     }
-//    if title != "" {
-//      commonQueryItems.append(URLQueryItem(name: "orderBy", value: title))
-//      customQueryItems.append(URLQueryItem(name: "orderBy", value: title))
-//    }
+    if title != "" {
+      customQueryItems.append(URLQueryItem(name: "orderBy", value: title))
+    }
     
     let tempURLString = URL(string: characterEndpoint.baseURL + "/" + characterEndpoint.path)
     var components = URLComponents(url: tempURLString!, resolvingAgainstBaseURL: true)

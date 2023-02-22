@@ -11,7 +11,6 @@ class CharacterViewController: UIViewController {
   
   var isLoading = false
   var pageCounter = 0
-  var selectedFilter = 0
   let reloadIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
   let customView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
   var requestArray = [Character?]()
