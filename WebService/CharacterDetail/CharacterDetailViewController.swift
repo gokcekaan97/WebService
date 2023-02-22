@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CharacterDetailViewController: UIViewController {
   
@@ -47,29 +48,11 @@ class CharacterDetailViewController: UIViewController {
         }
       }
       if let characterImageDetail = character.thumbnail?.landscapeIncredibleURL{
-        downloadImage(from: characterImageDetail)
+        characterThumbnail.kf.setImage(with: characterImageDetail)
       }
     } else {
       print("Can't get character")
     }
   }
-  
-  func downloadImage(from url: URL) {
-      getData(from: url) { data, response, error in
-        guard let data = data, error == nil else { return }
-        DispatchQueue.main.async { [weak self] in
-          if UIImage(data: data) != nil{
-              self?.characterThumbnail.image = UIImage(data: data)
-          } else {
-            self?.characterThumbnail.image = UIImage(named: "notFound")
-          }
-        }
-      }
-  }
-  
-  func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-  }
-  
 }
 

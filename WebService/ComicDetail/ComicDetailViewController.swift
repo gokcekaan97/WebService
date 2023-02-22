@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ComicDetailViewController: UIViewController {
   
   
+  @IBOutlet weak var comicImage: UIImageView!
   weak var comicDelegate: ComicDetail?
   var comicReferance: Comic?
   override func viewDidLoad() {
@@ -40,28 +42,11 @@ class ComicDetailViewController: UIViewController {
 //          characterComicListLabel.text = "No Comic List"
 //        }
 //      }
-//      if let characterImageDetail = character.thumbnail?.landscapeIncredibleURL{
-//        downloadImage(from: characterImageDetail)
-//      }
+      if let characterImageDetail = comic.thumbnail?.Url{
+        comicImage.kf.setImage(with: characterImageDetail)
+      }
     } else {
       print("Can't get character")
     }
-  }
-  
-  func downloadImage(from url: URL) {
-      getData(from: url) { data, response, error in
-        guard let data = data, error == nil else { return }
-        DispatchQueue.main.async { [weak self] in
-//          if UIImage(data: data) != nil{
-//              self?.characterThumbnail.image = UIImage(data: data)
-//          } else {
-//            self?.characterThumbnail.image = UIImage(named: "notFound")
-//          }
-        }
-      }
-  }
-  
-  func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
   }
 }

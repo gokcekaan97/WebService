@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ComicTableViewCell: UITableViewCell {
 
@@ -22,19 +23,6 @@ class ComicTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
   func downloadImage(from url: URL) {
-      getData(from: url) { data, response, error in
-        guard let data = data, error == nil else { return }
-        DispatchQueue.main.async { [weak self] in
-          if UIImage(data: data) != nil{
-            self?.comicImage.image =  UIImage(data: data)!
-          } else {
-            self?.comicImage.image = UIImage(named: "notFound")!
-          }
-        }
-      }
-  }
-  
-  func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    comicImage.kf.setImage(with: url)
   }
 }

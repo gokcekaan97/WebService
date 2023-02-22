@@ -133,7 +133,7 @@ extension ComicsViewController: UITableViewDelegate, UITableViewDataSource, UISe
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    self.characterReferance = requestArray[indexPath.row]
+    self.comicReferance = requestArray[indexPath.row]
     showDetails()
   }
   

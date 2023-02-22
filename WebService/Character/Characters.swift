@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class Characters: UITableViewCell {
 
@@ -23,19 +24,6 @@ class Characters: UITableViewCell {
     }
     
   func downloadImage(from url: URL) {
-      getData(from: url) { data, response, error in
-        guard let data = data, error == nil else { return }
-        DispatchQueue.main.async { [weak self] in
-          if UIImage(data: data) != nil{
-            self?.characterImage.image =  UIImage(data: data)!
-          } else {
-            self?.characterImage.image = UIImage(named: "notFound")!
-          }
-        }
-      }
-  }
-  
-  func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    characterImage.kf.setImage(with: url)
   }
 }

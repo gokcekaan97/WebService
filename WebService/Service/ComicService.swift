@@ -20,7 +20,8 @@ class ComicService {
       URLQueryItem(name: "limit", value: "\(limit)"),
       URLQueryItem(name: "ts", value: timestamp),
       URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
-      URLQueryItem(name: "hash", value: hash)
+      URLQueryItem(name: "hash", value: hash),
+      URLQueryItem(name: "orderBy", value: "title")
     ]
     let searchQueryItems = [
       URLQueryItem(name: "ts", value: timestamp),
