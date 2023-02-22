@@ -11,6 +11,7 @@ class CharacterViewController: UIViewController {
   
   var isLoading = false
   var pageCounter = 0
+  var selectedFilter = 0
   let reloadIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
   let customView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
   var requestArray = [Character?]()
@@ -24,8 +25,7 @@ class CharacterViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    characterTable.delegate = self
-    characterTable.dataSource = self
+    setDelegateAndDataSource()
     
     registerViewControllerItems()
     
@@ -42,6 +42,13 @@ class CharacterViewController: UIViewController {
 
 
 extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, CharacterDetail, UISearchBarDelegate {
+  
+  func setDelegateAndDataSource() {
+    self.characterTable.delegate = self
+    self.characterTable.dataSource = self
+  }
+  
+
   
   func addMoreContent(_ name: String?)  {
     reloadIndicator.startAnimating()
@@ -110,10 +117,6 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
     }
   }
   
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
-  }
-  
   func setCharacterDetail() -> Character? {
     return characterReferance
   }
@@ -124,10 +127,8 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource, C
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
     if indexPath.row == requestArray.count - 1, !isLoading, searchController.searchBar.text == ""{
       addMoreContent("")
-      
     }
   }
   

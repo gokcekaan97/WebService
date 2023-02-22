@@ -32,7 +32,6 @@ class CharacterService {
         customQueryItems.append(URLQueryItem(name: "nameStartsWith", value: name))
     }
     
-    
     let tempURLString = URL(string: characterEndpoint.baseURL + "/" + characterEndpoint.path)
     var components = URLComponents(url: tempURLString!, resolvingAgainstBaseURL: true)
     if customQueryItems != []{

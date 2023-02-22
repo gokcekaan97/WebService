@@ -10,33 +10,32 @@ import Foundation
 class ComicService {
   private let limit = 30
   
-  func downloadComics(_ name: String?,page: Int,characterEndpoint: ComicEndpoint, completion: @escaping (Result<ComicDataWrapper,NSError>) -> Void) {
+  func downloadComics(_ title : String?,_ name: String?,page: Int,characterEndpoint: ComicEndpoint, completion: @escaping (Result<ComicDataWrapper,NSError>) -> Void) {
     
     let timestamp = "1"
     let hash = "\(timestamp)\(characterEndpoint.privateKey)\(characterEndpoint.apiKey)".MD5
     var customQueryItems = [URLQueryItem]()
-    let commonQueryItems = [
+    var commonQueryItems = [
       URLQueryItem(name: "offset", value: "\(page * limit)"),
       URLQueryItem(name: "limit", value: "\(limit)"),
-      URLQueryItem(name: "ts", value: timestamp),
-      URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
-      URLQueryItem(name: "hash", value: hash),
-      URLQueryItem(name: "orderBy", value: "title")
-    ]
-    let searchQueryItems = [
+      URLQueryItem(name: "orderBy", value: "title"),
       URLQueryItem(name: "ts", value: timestamp),
       URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
       URLQueryItem(name: "hash", value: hash)
     ]
+    
     if name != "" {
         customQueryItems.append(URLQueryItem(name: "titleStartsWith", value: name))
     }
-    
+//    if title != "" {
+//      commonQueryItems.append(URLQueryItem(name: "orderBy", value: title))
+//      customQueryItems.append(URLQueryItem(name: "orderBy", value: title))
+//    }
     
     let tempURLString = URL(string: characterEndpoint.baseURL + "/" + characterEndpoint.path)
     var components = URLComponents(url: tempURLString!, resolvingAgainstBaseURL: true)
     if customQueryItems != []{
-      components?.queryItems = customQueryItems + searchQueryItems
+      components?.queryItems = customQueryItems + commonQueryItems
     } else {
       components?.queryItems = commonQueryItems
     }
