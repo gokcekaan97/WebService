@@ -32,7 +32,6 @@
 		27153BB52996323C00A57E7F /* LoadingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27153BB32996323C00A57E7F /* LoadingViewCell.swift */; };
 		27153BB62996323C00A57E7F /* LoadingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27153BB42996323C00A57E7F /* LoadingViewCell.xib */; };
 		27153BBB29967C2800A57E7F /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27153BB929967C2800A57E7F /* CharacterDetailViewController.swift */; };
-		27153BC12996897000A57E7F /* CharacterDetailViewControllerXib.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */; };
 		276DF28B299E5B6B0012472B /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF289299E5B6B0012472B /* ComicsViewController.swift */; };
 		276DF290299E5FF00012472B /* ComicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF28F299E5FF00012472B /* ComicService.swift */; };
 		276DF295299E60940012472B /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF293299E60940012472B /* ComicTableViewCell.swift */; };
@@ -48,6 +47,7 @@
 		276DF2AB299EAEFB0012472B /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF2AA299EAEFB0012472B /* ComicDetailViewController.swift */; };
 		276DF2AD299EAF200012472B /* ComicDetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276DF2AC299EAF200012472B /* ComicDetailStoryboard.storyboard */; };
 		276DF2AF299EB25F0012472B /* ComicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF2AE299EB25F0012472B /* ComicProtocol.swift */; };
+		276DF2B129ACE6DF0012472B /* CharacterDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276DF2B029ACE6DF0012472B /* CharacterDetailViewController.storyboard */; };
 		278CD4BE299A68570081B5E6 /* CharacterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278CD4BD299A68570081B5E6 /* CharacterProtocol.swift */; };
 		278CD4C1299A6EA20081B5E6 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278CD4BF299A6EA20081B5E6 /* Characters.swift */; };
 		278CD4C2299A6EA20081B5E6 /* Characters.xib in Resources */ = {isa = PBXBuildFile; fileRef = 278CD4C0299A6EA20081B5E6 /* Characters.xib */; };
@@ -83,7 +83,6 @@
 		27153BB32996323C00A57E7F /* LoadingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewCell.swift; sourceTree = "<group>"; };
 		27153BB42996323C00A57E7F /* LoadingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewCell.xib; sourceTree = "<group>"; };
 		27153BB929967C2800A57E7F /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
-		27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterDetailViewControllerXib.storyboard; sourceTree = "<group>"; };
 		276DF289299E5B6B0012472B /* ComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsViewController.swift; sourceTree = "<group>"; };
 		276DF28F299E5FF00012472B /* ComicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicService.swift; sourceTree = "<group>"; };
 		276DF293299E60940012472B /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		276DF2AA299EAEFB0012472B /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		276DF2AC299EAF200012472B /* ComicDetailStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComicDetailStoryboard.storyboard; sourceTree = "<group>"; };
 		276DF2AE299EB25F0012472B /* ComicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicProtocol.swift; sourceTree = "<group>"; };
+		276DF2B029ACE6DF0012472B /* CharacterDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CharacterDetailViewController.storyboard; sourceTree = "<group>"; };
 		278CD4BD299A68570081B5E6 /* CharacterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProtocol.swift; sourceTree = "<group>"; };
 		278CD4BF299A6EA20081B5E6 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		278CD4C0299A6EA20081B5E6 /* Characters.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Characters.xib; sourceTree = "<group>"; };
@@ -132,7 +132,6 @@
 				05E0096B7A01BE67697C7FAB /* Pods-WebService.debug.xcconfig */,
 				3F8CDA6D627D7526C4260D90 /* Pods-WebService.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -230,8 +229,8 @@
 		27153BB829967C0800A57E7F /* CharacterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				276DF2B029ACE6DF0012472B /* CharacterDetailViewController.storyboard */,
 				27153BB929967C2800A57E7F /* CharacterDetailViewController.swift */,
-				27153BC02996897000A57E7F /* CharacterDetailViewControllerXib.storyboard */,
 			);
 			path = CharacterDetail;
 			sourceTree = "<group>";
@@ -344,8 +343,8 @@
 				278CD4C2299A6EA20081B5E6 /* Characters.xib in Resources */,
 				276DF2AD299EAF200012472B /* ComicDetailStoryboard.storyboard in Resources */,
 				27153B822993916700A57E7F /* Assets.xcassets in Resources */,
+				276DF2B129ACE6DF0012472B /* CharacterDetailViewController.storyboard in Resources */,
 				27153B7D2993916700A57E7F /* Main.storyboard in Resources */,
-				27153BC12996897000A57E7F /* CharacterDetailViewControllerXib.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

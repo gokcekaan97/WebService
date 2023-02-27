@@ -10,20 +10,20 @@ import Kingfisher
 
 class Characters: UITableViewCell {
 
-  @IBOutlet weak var characterName: UILabel!
-  @IBOutlet weak var characterImage: UIImageView!
+  @IBOutlet private weak var characterName: UILabel! //TODO: private
+  @IBOutlet private weak var characterImage: UIImageView!
+  weak var characterDelegate: CharacterDetail?
+  private var characterReferance: Character?
   override func awakeFromNib() {
     super.awakeFromNib()
-        // Initialization code
   }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+  func setCharacterCell(){
+    self.characterReferance = characterDelegate?.setCharacterDetail()
+    if let character = characterReferance {
+      characterName.text = character.name
+      characterImage.kf.setImage(with: character.thumbnail?.Url)
+    }else{
+      fatalError("can't get comics")
     }
-    
-  func downloadImage(from url: URL) {
-    characterImage.kf.setImage(with: url)
   }
 }

@@ -9,44 +9,26 @@ import UIKit
 import Kingfisher
 
 class ComicDetailViewController: UIViewController {
-  
-  
-  @IBOutlet weak var comicImage: UIImageView!
+    
+  @IBOutlet private weak var comicImage: UIImageView!
   weak var comicDelegate: ComicDetail?
-  var comicReferance: Comic?
+  private var comicReferance: Comic?
+  // TODO: Edit:: comicReferance sadece bu class da kullanılacaksa private olarak tanımlanabilir. Bu sekilde tüm class lardan görünür ve bellekte fazla yer kaplar.
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.comicReferance = comicDelegate?.setComicDetail()
-    
     setComicView()
   }
-  
+  // TODO: Edit:: Burada kullanılmayan satırları silebilirsin.
   func setComicView(){
     if let comic = comicReferance {
-//      characterNameLabel.text = comic.name
       title = comic.title
-      if comic.description != "" {
-//        characterDescriptionLabel.text = comic.description
-      } else {
-//        characterDescriptionLabel.text = "No Description"
-      }
-//      if let comicComicList = comic.comics?.items {
-//        if !comicComicList.isEmpty{
-//          characterComicListLabel.text = comicComicList.reduce("") {(result, list) -> String in
-//            if let name = list.name{
-//              return result + String(describing: "\(name)\n")
-//            }
-//            return ""
-//          }
-//        } else {
-//          characterComicListLabel.text = "No Comic List"
-//        }
-//      }
       if let characterImageDetail = comic.thumbnail?.Url{
         comicImage.kf.setImage(with: characterImageDetail)
       }
     } else {
-      print("Can't get character")
+      fatalError("Can't get character")  // TODO: Edit:: Kod içerisinde print kullanıabilirsin ama projeye en son commit olarak atma. Eger atmak gerekiyorsa print yerine debugPrint kullanmalısın.
     }
   }
 }

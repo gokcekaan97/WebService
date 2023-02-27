@@ -10,22 +10,18 @@ import Kingfisher
 
 class CharacterDetailViewController: UIViewController {
   
-  @IBOutlet weak var characterThumbnail: UIImageView!
-  @IBOutlet weak var characterComicListLabel: UILabel!
-  @IBOutlet weak var characterDescriptionLabel: UILabel!
-  @IBOutlet weak var characterNameLabel: UILabel!
-  var characterReferance: Character?
-  weak var characterDelegate: CharacterDetail?
-  
+  @IBOutlet private weak var characterThumbnail: UIImageView!// TODO: Boş satırlar silinir.
+  @IBOutlet private weak var characterComicListLabel: UILabel!// TODO: Boş satırlar silinir.
+  @IBOutlet private weak var characterDescriptionLabel: UILabel!// TODO: Boş satırlar silinir.
+  @IBOutlet private weak var characterNameLabel: UILabel!// TODO: Boş satırlar silinir.
+  private var characterReferance: Character?  // TODO: Private
+  weak var characterDelegate: CharacterDetail? // TODO: Boş satırlar silinir.
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     self.characterReferance = characterDelegate?.setCharacterDetail()
-    
     setCharacterView()
-    
+    // TODO: Boş satırlar silinir.
   }
-  
   func setCharacterView(){
     if let character = characterReferance {
       characterNameLabel.text = character.name
@@ -51,7 +47,7 @@ class CharacterDetailViewController: UIViewController {
         characterThumbnail.kf.setImage(with: characterImageDetail)
       }
     } else {
-      print("Can't get character")
+      fatalError("Can't get character") // TODO: DebugPrint Kullanılmayacaksa else blogu silinebilir.
     }
   }
 }

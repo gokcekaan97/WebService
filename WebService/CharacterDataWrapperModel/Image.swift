@@ -10,7 +10,6 @@ import UIKit
 
 struct Image: Codable {
   
-  
   let path:String? // (string, optional): The directory path of to the image.,
   let pathExtension:String? // (string, optional): The file extension for the image.
   var standardMediumURL: URL? {

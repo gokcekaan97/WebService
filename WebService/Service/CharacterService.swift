@@ -15,30 +15,22 @@ class CharacterService {
     
     let timestamp = "1"
     let hash = "\(timestamp)\(characterEndpoint.privateKey)\(characterEndpoint.apiKey)".MD5
-    var customQueryItems = [URLQueryItem]()
-    let commonQueryItems = [
-      URLQueryItem(name: "offset", value: "\(page * limit)"),
-      URLQueryItem(name: "limit", value: "\(limit)"),
-      URLQueryItem(name: "ts", value: timestamp),
-      URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
-      URLQueryItem(name: "hash", value: hash)
-    ]
-    let searchQueryItems = [
-      URLQueryItem(name: "ts", value: timestamp),
-      URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
-      URLQueryItem(name: "hash", value: hash)
-    ]
-    if name != "" {
-        customQueryItems.append(URLQueryItem(name: "nameStartsWith", value: name))
-    }
-    
     let tempURLString = URL(string: characterEndpoint.baseURL + "/" + characterEndpoint.path)
     var components = URLComponents(url: tempURLString!, resolvingAgainstBaseURL: true)
-    if customQueryItems != []{
-      components?.queryItems = customQueryItems + searchQueryItems
-    } else {
-      components?.queryItems = commonQueryItems
+    var customQueryItems = [URLQueryItem]()
+    if let name = name, name != "" {
+      customQueryItems.append(URLQueryItem(name: "nameStartsWith", value: name))
     }
+    if page > 0 {
+      customQueryItems.append(URLQueryItem(name: "offset", value: "\(page * limit)"))
+    }
+    let commonQueryItems = [
+      URLQueryItem(name: "ts", value: timestamp),
+      URLQueryItem(name: "apikey", value: characterEndpoint.apiKey),
+      URLQueryItem(name: "hash", value: hash)
+    ]
+    
+    components?.queryItems = commonQueryItems + customQueryItems
     
     guard let url = components?.url else {
       return completion(.failure(NSError(domain: "", code: 000, userInfo: ["message": "Can't build url"])))
