@@ -20,6 +20,7 @@ class ComicDetailViewController: UIViewController {
     self.comicReferance = comicDelegate?.setComicDetail()
     setComicView()
   }
+  
   // TODO: Edit:: Burada kullanılmayan satırları silebilirsin.
   func setComicView(){
     if let comic = comicReferance {

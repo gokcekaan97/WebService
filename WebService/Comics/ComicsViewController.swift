@@ -22,16 +22,19 @@ class ComicsViewController: UIViewController {
   private var comicReferance: Comic?
   private let comicTableViewCell = UINib(nibName: "ComicTableViewCell", bundle: nil)
   private let loadingCellNib = UINib(nibName: "LoadingViewCell", bundle: nil)
+  private var main = UIStoryboard(name: "Main", bundle: nil)
   private var comicDetail = UIStoryboard(name: "ComicDetailStoryboard", bundle: nil)
   private let filterPickerView = ["Default","Ascending Title","Descenging Title","Ascending On Sale Date","Descending On Sale Date"]
   private let filterPickerServiceName = ["","title","-title","onsaleDate","-onsaleDate"]
   private var pickerView: UIPickerView!
   private var filterView: UIView!
+  private var backButton: UIButton!
   @IBOutlet private weak var comicTable: UITableView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     //TODO: Boşluklar
+    setBackButton()
     setDataSourceAndDelegate()
     registerViewControllerItems()
     setActivityIndicator()
@@ -39,16 +42,43 @@ class ComicsViewController: UIViewController {
     setPickerView()
     addMoreContent(searchText)
   }
+  func setBackButton(){
+    backButton = UIButton(type: .custom)
+    backButton.setImage(UIImage(named: "BackButton.png"), for: .normal)
+    backButton.setTitle("Back", for: .normal)
+    backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+    backButton.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    backButton.isHidden = true
+  }
+  @objc func backAction() -> Void {
+    searchController.searchBar.isHidden = false
+    backButton.isHidden = true
+    self.dismiss(animated: true)
+  }
   func setDataSourceAndDelegate(){
     comicTable.delegate = self
     comicTable.dataSource = self
   }
   func showDetails() {
+    if searchController.isActive{
+      self.searchController.dismiss(animated: true){
+        self.showMoreDetails()
+      }
+    } else {
+      showMoreDetails()
+    }
+  }
+  func showMoreDetails(){
     guard let comicDetailViewController = comicDetail.instantiateViewController(identifier: "ComicDetailViewController") as? ComicDetailViewController else {
       fatalError("vc not found")
     }
+    searchController.searchBar.isHidden = true
+    backButton.isHidden = false
+    self.definesPresentationContext = true
     comicDetailViewController.comicDelegate = self
-    navigationController?.pushViewController(comicDetailViewController, animated: true)
+    comicDetailViewController.modalPresentationStyle = .overCurrentContext
+    self.present(comicDetailViewController, animated: true, completion: nil)
   }
   func setPickerView(){
     filterView = UIView(frame: CGRect(x: 0, y: self.view.bounds.height, width: view.frame.width, height: 44))
@@ -155,6 +185,12 @@ class ComicsViewController: UIViewController {
       UIView.animate(withDuration: 0.3, animations: {
           self.filterView.frame = CGRect(x: 0, y: self.view.bounds.height, width: self.filterView.bounds.size.width, height: self.filterView.bounds.size.height)
       })
+  }
+  @objc func dismissView(){
+    guard let comicDetailViewController = comicDetail.instantiateViewController(identifier: "ComicDetailViewController") as? ComicDetailViewController else {
+      fatalError("vc not found")
+    }
+    comicDetailViewController.dismiss(animated: true)
   }
 }
 
