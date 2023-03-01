@@ -48,10 +48,10 @@ class ComicsViewController: UIViewController {
     backButton.setTitle("Back", for: .normal)
     backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
     backButton.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
-    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     backButton.isHidden = true
   }
   @objc func backAction() -> Void {
+    self.navigationItem.leftBarButtonItem = nil
     searchController.searchBar.isHidden = false
     backButton.isHidden = true
     self.dismiss(animated: true)
@@ -61,6 +61,7 @@ class ComicsViewController: UIViewController {
     comicTable.dataSource = self
   }
   func showDetails() {
+    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     if searchController.isActive{
       self.searchController.dismiss(animated: true){
         self.showMoreDetails()
